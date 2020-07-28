@@ -13,7 +13,7 @@ your_web_server.py를 작성하였다면 다음을 따르세요
 1. your_web_server.py 코드에서 app = flask(name)을 application = app = flask(name)으로 수정하세요.
 2. your_web_server.py 파일명을 application.py로 변경하세요.
 3. 명령 프롬프트(cmd)를 켠 후 python이 설치된 경로로 이동합니다. 예시) cd c:\users\babab_000\appdata\local\Programs\Python\Python38-32
-4. pip freeze 또는 python -m pip freeze명령어를 입력하면 나오는 모듈의 버젼들을 requirements.txt 파일을 만들어 저장합니다.
+4. pip freeze 또는 python -m pip freeze명령어를 입력하면 나오는 모듈의 버젼들을 requirements.txt 파일을 만들어 복사 붙여넣기 합니다.
 5. application.py파일 , static 폴더, templates 폴더, requirements.txt를 koinvesting.zip으로 압축
 6. Elastic Beanstalk 대시보드로 이동 -> 업로드 및 배포 -> 파일 선택(koinvesting.zip) -> 버전 레이블(koinvesting_v1) -> 배포
 7. 왼쪽 navbar 에서 환경으로 이동을 누르면 사이트로 이동하여 잘 작동하는 것을 볼 수 있습니다.
