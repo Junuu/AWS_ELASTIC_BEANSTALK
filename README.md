@@ -1,0 +1,2 @@
+# AWS_ELASTIC_BEANSTALK
+web hosting
