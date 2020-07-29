@@ -34,16 +34,26 @@ your_web_server.py를 작성하였다면 다음을 따르세요
 
 * cron-linux.config 파일은 저장소에서 다운로드 받을 수 있습니다.
 * 명령 프롬프트(cmd)에서 md .ebextensions 라는 명령어를 입력하면 폴더를 생성할 수 있습니다.
+* cron-linux.config 파일을 생성하기 위해서는 명령 프롬프트(cmd)에서 copy con cron-linux.config 라는 명령어를 입력한 후 sometext 를 입력  그 이후 Ctrl + Z , Enter를 누르면 저장됩니다. 링크를 참조하시면 도움이 됩니다 : https://m.blog.naver.com/PostView.nhn?blogId=jed00&logNo=140188420401&proxyReferer=https:%2F%2Fwww.google.com%2F
 * cron-linux.config 파일을 수정하기 위해서는 명령 프롬프트(cmd)에서 notepad cron-linux.config 라는 명령어를 입력하면 됩니다.
 * cron-linux.config 파일을 확인하기 위해서는 명령 프롬프트(cmd)에서 type cron-linux.config 라는 명령어를 입력하면 됩니다.
 * 예를 들어 한시간 마다 함수를 호출하고 싶다면 cron-linux.config 파일의 */5 * * * * 부분을 0 */1 * * * 으로 수정하시면 됩니다.
 ```
-
-
+#### 하지만 당신의 test.py가 import bs4 와 같은 외부 라이브러리를 포함하고 있다면 추가 작업이 필요합니다.
+```
+1. 저장소에서 10_commands.config 파일을 다운로드 받습니다.
+2. .ebextensions 폴더에 10_commands.config 파일을 넣습니다.
+3. notepad 10_commands.config 명령어를 사용하여 편집을 시작합니다.
+4. command: pip install bs4 부분에서 bs4를 설치하고싶은 모듈의 이름으로 대체합니다.
+5. 예시는 4개의 모듈설치를 하고있습니다. 필요에 따라서 추가 삭제하십시오.
+```
 ----------
 #### 시행착오
 ```
 문제1 서버가 실행되다가 메모리부족으로 종료되는 경우가 빈번하여 알아보았더니 서버에서 한 페이지를 호출할때 대규모 크롤링으로 크롤링이 메모리를 많이 잡아먹는다는 것을 알게 됨.
-해결방안 페이지를 호출할 때가 아닌 일정시간마다 대규모 크롤링을 진행하여 .txt 나 DB에 저장하여 그 값을 불러 옴. 
+- 해결방안 페이지를 호출할 때가 아닌 일정시간마다 대규모 크롤링을 진행하여 .txt 나 DB에 저장하여 그 값을 불러 옴. 
+
+문제2 Linux Cron을 다루는 방법을 전혀 모르겠었음 검색을 통해서도 한계를 느낌
+- 해결방안 stack overflow에 질문을하여 답변을 받음
 
 ```
