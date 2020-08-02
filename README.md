@@ -70,6 +70,7 @@ your_web_server.py를 작성하였다면 다음을 따르세요
 
 #### [Loader를 활용해 서버 부하 테스트 해보기](https://support.loader.io/article/20-verifying-an-app)
 
+#### [yarm 파일에는 tab키 쓰면 안됨](https://github.com/moraes/config/issues/1)
 #### 시행착오
 ```
 문제1 서버가 실행되다가 메모리부족으로 종료되는 경우가 빈번하여 알아보았더니 서버에서 한 페이지를 호출할때 대규모 크롤링으로 크롤링이 메모리를 많이 잡아먹는다는 것을 알게 됨.
