@@ -50,15 +50,21 @@ your_web_server.py를 작성하였다면 다음을 따르세요
 ----------
 
 #### 웹페이지를 만들었으나 도메인이 너무 복잡하여 접근하기 어려움으로 도메인을 구매하여 접근하기 쉽게 합니다.
-##### [도메인 구매 절차와 AWS Route53 연결 및 HTTPS 인증서 설명 사이트](https://medium.com/@rlatla626/route-53%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0-f92aaeedf6ea)
+##### [도메인 구매 절차와 네임서버 AWS Route53 연결](https://medium.com/@rlatla626/route-53%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0-f92aaeedf6ea)
+##### [Application Load Balancer에 SSL 인증서 적용하기](https://velog.io/@minholee_93/AWS-ELB-SSL-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-mfk4dpjrd6)
+##### 큰 절차이며 자세한 부분은 위의 2개의 링크를 참조하십시오
 ```
-Load Balancer 만드는 방법
-1. Elastic Beanstalk 대시보드로 가서 구성으로 들어갑니다.
-2. 구성 -> 용량 편집 -> 환경 유형 (로드 밸런싱으로 변경) -> 조정트리거 (지표 : CPU Utilization, 통계 : 평균 , 단위 : % , 기간 : 5분 , 위반 기간 : 5분, 상위 임계 값 : 80 , 확장 증분 : 1 , 하위 임계 값 50 , 측소 증분 -1) -> 적용
-3. 위의 설정은 CPU 사용량이 5분동안 80%가 넘어가게되면 인스턴스 1개를 확장하고 50%미만으로 사용되면 1개를 축소하게 만듭니다. (설정 후에 구성에 로드밸런서가 생긴걸 확일할 수 있습니다)
+1. Route53 -> DNS management -> Create Hosted Zone -> Domain name에 가지고 있는 도메인을 입력 -> 생성
+2. NS와 SOA가 생기게되는데 NS는 Name Server를 뜻합니다.
+3. 도메인을 얻은 사이트로가서 네임서버를 NS가 가지고있는 4개로 변경합니다.
+4. 보안을 위한 https 연결을 위해 certificate manager에 접속하여 인증서를 받습니다.
+5. EC2의 보안그룹에 HTTPS,HTTP를 추가합니다.
+6. EC2 Load Balancer를 생성합니다.(Application Load Balancer)
+7. Route53에서 레코드 생성 -> 단순 라우팅 -> 단순 레코드 정의 -> Application Load Balancer에 대한 별칭 -> 서울 선택 ->로드 밸런서 선택 -> 단순 레코드 정의
+8. 성공적으로 https://example.com 에 접속할 수 있습니다.
 
 ```
-##### [Http to HTTPS redirect](https://www.youtube.com/watch?v=0IVwrHx1hPI)
+##### [Classic Load Balnacer를 생성한 경우 Http to HTTPS redirect](https://www.youtube.com/watch?v=0IVwrHx1hPI)
 
 #### 시행착오
 ```
@@ -68,5 +74,7 @@ Load Balancer 만드는 방법
 문제2 Linux Cron을 다루는 방법을 전혀 모르겠었음 검색을 통해서도 한계를 느낌
 - 해결방안 stack overflow에 질문을하여 답변을 받음
 
+문제3 https 인증 및 도메인 연결에서 https 인증서를 가지고있으나 https로 인증이 되지않아 애를 먹었음.
+- 해결방안 보안 그룹의 문제였음 HTTPS,HTTP를 접근할 수 있게 하자 해결되었음.
 
 ```
