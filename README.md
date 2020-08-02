@@ -66,6 +66,10 @@ your_web_server.py를 작성하였다면 다음을 따르세요
 ```
 ##### [Classic Load Balnacer를 생성한 경우 Http to HTTPS redirect](https://www.youtube.com/watch?v=0IVwrHx1hPI)
 
+#### [503 Service Temporarily Unavailable 해결법](https://medium.com/@degaze.film/aws-load-balancer-503-service-temporarily-unavailable-e1e91c0dfcdb)
+
+#### [Loader를 활용해 서버 부하 테스트 해보기](https://support.loader.io/article/20-verifying-an-app)
+
 #### 시행착오
 ```
 문제1 서버가 실행되다가 메모리부족으로 종료되는 경우가 빈번하여 알아보았더니 서버에서 한 페이지를 호출할때 대규모 크롤링으로 크롤링이 메모리를 많이 잡아먹는다는 것을 알게 됨.
